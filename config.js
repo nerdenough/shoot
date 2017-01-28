@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 let config = {
   // Use ESLint (extends `none`)
@@ -7,6 +7,6 @@ let config = {
 
   // webpack-dev-server port
   port: 9080
-}
+};
 
-module.exports = config
+module.exports = config;

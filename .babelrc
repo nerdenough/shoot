@@ -1,5 +1,4 @@
 {
-  "comments": false,
   "env": {
     "testing-unit": {
       "presets": ["es2015", "stage-0"],

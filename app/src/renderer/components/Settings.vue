@@ -5,15 +5,15 @@
       <h3>AWS Config</h3>
       <div class="form-item">
         <label for="bucket">S3 Bucket Name</label>
-        <input v-model="bucket" type="text">
+        <input v-model="bucket" @keyup="onBucketChange" type="text">
       </div>
       <div class="form-item">
         <label for="bucket">Access Key ID</label>
-        <input v-model="accessKeyId" type="text">
+        <input v-model="accessKeyId" @keyup="onAccessKeyIdChange" type="text">
       </div>
       <div class="form-item">
         <label for="bucket">Secret Access Key</label>
-        <input v-model="secretAccessKey" type="text">
+        <input v-model="secretAccessKey" @keyup="onSecretAccessKeyChange" type="text">
       </div>
     </div>
   </div>
@@ -25,6 +25,18 @@ import CollapseToggle from './CollapseToggle';
 
 const config = new ElectronConfig();
 
+function onBucketChange() {
+  config.set('aws.bucket', this.bucket);
+}
+
+function onAccessKeyIdChange() {
+  config.set('aws.accessKeyId', this.accessKeyId);
+}
+
+function onSecretAccessKeyChange() {
+  config.set('aws.secretAccessKey', this.secretAccessKey);
+}
+
 export default {
   name: 'settings',
   components: { CollapseToggle },
@@ -32,7 +44,12 @@ export default {
     bucket: config.get('aws.bucket'),
     accessKeyId: config.get('aws.accessKeyId'),
     secretAccessKey: config.get('aws.secretAccessKey')
-  })
+  }),
+  methods: {
+    onBucketChange,
+    onAccessKeyIdChange,
+    onSecretAccessKeyChange
+  }
 };
 </script>
 

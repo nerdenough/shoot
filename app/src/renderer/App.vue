@@ -1,14 +1,16 @@
 <template>
   <div class="app">
+    <preview></preview>
     <settings></settings>
   </div>
 </template>
 
 <script>
+import Preview from './components/Preview';
 import Settings from './components/Settings';
 
 export default {
-  components: { Settings }
+  components: { Preview, Settings }
 };
 </script>
 
@@ -25,6 +27,9 @@ html, body {
 }
 
 .app {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
   width: 100%;
   height: 100%;
   background: white;

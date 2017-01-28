@@ -12,8 +12,8 @@ function createWindow () {
    * Initial window options
    */
   mainWindow = new BrowserWindow({
-    width: 360,
-    height: 200
+    width: 400,
+    height: 240
   });
 
   mainWindow.setMenu(null);

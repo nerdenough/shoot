@@ -13,7 +13,9 @@ function createWindow () {
    */
   mainWindow = new BrowserWindow({
     width: 400,
-    height: 240
+    height: 240,
+    frame: false,
+    transparent: true
   });
 
   mainWindow.setMenu(null);

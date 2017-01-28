@@ -105,5 +105,8 @@
     "webpack-dev-server": "^2.2.0",
     "webpack-merge": "^2.4.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "body-parser": "^1.16.0",
+    "express": "^4.14.0"
+  }
 }

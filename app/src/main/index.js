@@ -1,6 +1,16 @@
-'use strict';
+import path from 'path';
+import express from 'express';
+import bodyParser from 'body-parser';
 
 import { app, BrowserWindow } from 'electron';
+
+const server = express();
+
+server.post('/upload', (req, res) => {
+  // TODO: Upload the file
+});
+
+server.listen(3000);
 
 let mainWindow;
 const winURL = process.env.NODE_ENV === 'development'

@@ -3,6 +3,7 @@ import path from 'path';
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import shortid from 'shortid';
 import AWS from 'aws-sdk';
 
 import { app, BrowserWindow } from 'electron';
@@ -24,6 +25,8 @@ server.post('/upload', (req, res) => {
       reply(500);
     }
 
+    const ext = path.extname(req.body.path);
+
     AWS.config.update({
       credentials: {
         bucket: req.body.bucket,
@@ -35,7 +38,7 @@ server.post('/upload', (req, res) => {
     const s3 = new AWS.S3();
     const params = {
       Bucket: req.body.bucket,
-      Key: 'hello.png',
+      Key: `${shortid.generate()}${ext}`,
       Body: new Buffer(data),
       ContentType: req.body.type
     };

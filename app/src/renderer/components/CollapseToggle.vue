@@ -13,26 +13,27 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../variables.scss';
+$height: 30px;
 
 .collapse-toggle {
   display: flex;
   width: 100%;
-  height: 30px;
+  height: $height;
   background: $material-grey-primary;
   color: $material-grey-secondary;
-  padding: 0 5px;
+  padding: 0 $spacing-small;
 
   h3 {
     flex-grow: 1;
-    font-size: 13px;
-    font-weight: 500;
-    line-height: 30px;
+    font-size: $settings-header;
+    font-weight: $bold;
+    line-height: $height;
     margin: 0;
   }
 
   .toggle {
-    font-size: 12px;
-    line-height: 30px;
+    font-size: $settings-icon;
+    line-height: $height;
   }
 }
 </style>

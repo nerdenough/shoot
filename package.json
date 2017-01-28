@@ -16,8 +16,8 @@
     "postinstall": "npm run lint:fix && cd app && npm install"
   },
   "build": {
-    "productName": "ElectronVue",
-    "appId": "org.simulatedgreg.electron-vue",
+    "productName": "Shoot",
+    "appId": "nz.goodenough.shoot",
     "category": "public.app-category.tools",
     "dmg": {
       "contents": [
@@ -51,7 +51,7 @@
       ]
     }
   },
-  "author": "Greg Holguin <simulatedgreg@gmail.com>",
+  "author": "Brendan Goodenough <brendan@goodenough.nz>",
   "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.8.0",

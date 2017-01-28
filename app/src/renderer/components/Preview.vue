@@ -7,16 +7,27 @@
       <div class="button" title="Record your screen">
         <i class="fa fa-video-camera icon"></i>
       </div>
-      <div class="button" title="Upload an existing file">
+      <input type="file" @change="onFileChange" class="button" title="Upload an existing file">
         <i class="fa fa-file icon"></i>
-      </div>
+      </input>
     </div>
   </div>
 </template>
 
 <script>
+function onFileChange(e) {
+  const files = e.target.files || e.dataTransfer.files;
+
+  if (files && files.length) {
+    // TODO: Upload files
+  }
+}
+
 export default {
-  name: 'preview'
+  name: 'preview',
+  methods: {
+    onFileChange
+  }
 };
 </script>
 

@@ -106,6 +106,7 @@
     "webpack-merge": "^2.4.0"
   },
   "dependencies": {
+    "aws-sdk": "^2.9.0",
     "body-parser": "^1.16.0",
     "cors": "^2.8.1",
     "express": "^4.14.0"

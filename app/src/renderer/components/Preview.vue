@@ -15,12 +15,12 @@
 </template>
 
 <script>
-function fileUploadSuccess() {
-  console.log('SUCCESS');
+function fileUploadSuccess(res) {
+  console.log('SUCCESS', res);
 }
 
-function fileUploadError() {
-  console.log('ERROR');
+function fileUploadError(err) {
+  console.log(err);
 }
 
 function onFileChange(e) {
@@ -31,7 +31,11 @@ function onFileChange(e) {
 
     this.$http
       .post('http://localhost:3000/upload', {
-        path: file.path
+        path: file.path,
+        type: file.type,
+        bucket: '', // TODO: Get bucket name from user settings
+        accessKeyId: '', // TODO: Get access key id from user settings
+        secretAccessKey: '' // TODO: Get secret access key from user settings
       })
       .then(fileUploadSuccess, fileUploadError);
   }

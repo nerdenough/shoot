@@ -15,11 +15,25 @@
 </template>
 
 <script>
+function fileUploadSuccess() {
+  console.log('SUCCESS');
+}
+
+function fileUploadError() {
+  console.log('ERROR');
+}
+
 function onFileChange(e) {
   const files = e.target.files || e.dataTransfer.files;
 
   if (files && files.length) {
-    // TODO: Upload files
+    const file = files[0];
+
+    this.$http
+      .post('http://localhost:3000/upload', {
+        path: file.path
+      })
+      .then(fileUploadSuccess, fileUploadError);
   }
 }
 

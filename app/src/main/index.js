@@ -1,10 +1,12 @@
 import path from 'path';
 import express from 'express';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 
 import { app, BrowserWindow } from 'electron';
 
 const server = express();
+server.use(cors());
 
 server.post('/upload', (req, res) => {
   // TODO: Upload the file

@@ -5,12 +5,12 @@
 </template>
 
 <script>
-  import LandingPage from 'components/LandingPageView'
+  import LandingPage from 'components/LandingPageView';
   export default {
     components: {
       LandingPage
     }
-  }
+  };
 </script>
 
 <style>

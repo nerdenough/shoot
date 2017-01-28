@@ -8,15 +8,15 @@
 </template>
 
 <script>
-  import Links from './LandingPageView/Links'
-  import Versions from './LandingPageView/Versions'
+  import Links from './LandingPageView/Links';
+  import Versions from './LandingPageView/Versions';
   export default {
     components: {
       Links,
       Versions
     },
     name: 'landing-page'
-  }
+  };
 </script>
 
 <style scoped>

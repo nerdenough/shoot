@@ -21,7 +21,7 @@ $height: 30px;
   height: $height;
   background: $material-grey-primary;
   color: $material-grey-secondary;
-  padding: 0 $spacing-small;
+  padding: 0 $spacing-medium;
 
   h3 {
     flex-grow: 1;

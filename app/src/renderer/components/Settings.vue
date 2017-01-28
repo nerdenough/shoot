@@ -61,7 +61,7 @@ export default {
   color: white;
 
   .form {
-    padding: $spacing-small;
+    padding: $spacing-medium;
 
     h3 {
       font-size: 12px;

@@ -5,11 +5,8 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import shortid from 'shortid';
 import AWS from 'aws-sdk';
-import Config from 'electron-config';
 
 import { app, BrowserWindow } from 'electron';
-
-const config = new Config();
 
 const server = express();
 server.use(bodyParser.json());
@@ -31,9 +28,8 @@ server.post('/upload', (req, res) => {
 
     AWS.config.update({
       credentials: {
-        bucket: config.get('aws.bucket'),
-        accessKeyId: config.get('aws.accessKeyId'),
-        secretAccessKey: config.get('aws.secretAccessKey')
+        accessKeyId: req.body.accessKeyId,
+        secretAccessKey: req.body.secretAccessKey
       }
     });
 

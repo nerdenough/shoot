@@ -15,6 +15,9 @@
 </template>
 
 <script>
+import ElectronConfig from 'electron-config';
+const config = new ElectronConfig();
+
 function fileUploadSuccess(res) {
   console.log('SUCCESS', res);
 }
@@ -33,9 +36,9 @@ function onFileChange(e) {
       .post('http://localhost:3000/upload', {
         path: file.path,
         type: file.type,
-        bucket: '', // TODO: Get bucket name from user settings
-        accessKeyId: '', // TODO: Get access key id from user settings
-        secretAccessKey: '' // TODO: Get secret access key from user settings
+        bucket: config.get('aws.bucket'),
+        accessKeyId: config.get('aws.accessKeyId'),
+        secretAccessKey: config.get('aws.secretAccessKey')
       })
       .then(fileUploadSuccess, fileUploadError);
   }

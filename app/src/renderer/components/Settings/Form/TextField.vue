@@ -43,6 +43,15 @@ export default {
     padding: 0 $spacing-small;
     border: 1px solid lighten($material-grey-primary, 4%);
     border-radius: $border-radius;
+
+    &:hover {
+      border: 1px solid lighten($material-grey-primary, 8%);
+    }
+
+    &:focus {
+      color: white;
+      border: 1px solid lighten($material-grey-primary, 8%);
+    }
   }
 }
 </style>

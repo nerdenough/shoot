@@ -2,17 +2,16 @@
   <div class="preview">
     <!-- TODO: Hide and trigger file on click -->
     <input type="file" @change="onFileChange"></input>
+    <image-item v-for="image in images" :image="image"></image-item>
     <div class="buttons">
       <div class="button">Upload</div>
     </div>
     {{ this.url }}
-    <div v-for="image in images">
-      <img :src="image">
-    </div>
   </div>
 </template>
 
 <script>
+import ImageItem from './Preview/ImageItem';
 import ElectronConfig from 'electron-config';
 import { images } from '../main';
 const config = new ElectronConfig();
@@ -46,6 +45,9 @@ function onFileChange(e) {
 
 export default {
   name: 'preview',
+  components: {
+    ImageItem
+  },
   data: () => ({
     url: '',
     images
@@ -65,12 +67,6 @@ export default {
   background: white;
 
   .buttons {
-    display: flex;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
     .button {
       width: 200px;
       height: 60px;
@@ -84,6 +80,7 @@ export default {
       border-radius: $border-radius;
       box-sizing: content-box;
       border: 2px solid $material-pink-primary;
+      margin: 0 auto;
 
       &:hover {
         background: white;

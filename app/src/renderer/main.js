@@ -20,7 +20,10 @@ function onPaste(e) {
       const blob = e.clipboardData.items[i].getAsFile();
       const url = window.URL;
       const source = url.createObjectURL(blob);
-      images.push(source);
+      images.push({
+        blob,
+        source
+      });
     }
   });
 }

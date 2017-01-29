@@ -1,7 +1,7 @@
 <template>
     <div class="image-item">
       <div class="preview">
-        <img class="image" :src="image">
+        <img class="image" :src="image.source">
       </div>
       <div class="grow"></div>
       <button @click="onClick" class="button delete">
@@ -27,7 +27,7 @@ export default {
       required: true
     },
     image: {
-      type: String,
+      type: Object,
       required: true
     },
     deleteImage: {

@@ -1,49 +1,13 @@
 <template>
   <div class="settings">
     <collapse-toggle v-bind:collapse="this.collapse" v-bind:collapsed="this.collapsed"></collapse-toggle>
-    <div class="form" v-if="!this.collapsed">
-      <h3>AWS Config</h3>
-      <div class="form-item">
-        <label for="bucket">URL</label>
-        <input v-model="url" @keyup="onUrlChange" type="text">
-      </div>
-      <div class="form-item">
-        <label for="bucket">S3 Bucket Name</label>
-        <input v-model="bucket" @keyup="onBucketChange" type="text">
-      </div>
-      <div class="form-item">
-        <label for="bucket">Access Key ID</label>
-        <input v-model="accessKeyId" @keyup="onAccessKeyIdChange" type="text">
-      </div>
-      <div class="form-item">
-        <label for="bucket">Secret Access Key</label>
-        <input v-model="secretAccessKey" @keyup="onSecretAccessKeyChange" type="text">
-      </div>
-    </div>
+    <aws-settings v-if="!this.collapsed"></aws-settings>
   </div>
 </template>
 
 <script>
-import ElectronConfig from 'electron-config';
-import CollapseToggle from './CollapseToggle';
-
-const config = new ElectronConfig();
-
-function onUrlChange() {
-  config.set('aws.url', this.url);
-}
-
-function onBucketChange() {
-  config.set('aws.bucket', this.bucket);
-}
-
-function onAccessKeyIdChange() {
-  config.set('aws.accessKeyId', this.accessKeyId);
-}
-
-function onSecretAccessKeyChange() {
-  config.set('aws.secretAccessKey', this.secretAccessKey);
-}
+import CollapseToggle from './Settings/CollapseToggle';
+import AwsSettings from './Settings/AwsSettings';
 
 function collapse() {
   this.collapsed = !this.collapsed;
@@ -51,19 +15,14 @@ function collapse() {
 
 export default {
   name: 'settings',
-  components: { CollapseToggle },
+  components: {
+    CollapseToggle,
+    AwsSettings
+  },
   data: () => ({
-    url: config.get('aws.url'),
-    bucket: config.get('aws.bucket'),
-    accessKeyId: config.get('aws.accessKeyId'),
-    secretAccessKey: config.get('aws.secretAccessKey'),
     collapsed: true
   }),
   methods: {
-    onUrlChange,
-    onBucketChange,
-    onAccessKeyIdChange,
-    onSecretAccessKeyChange,
     collapse
   }
 };
@@ -75,39 +34,5 @@ export default {
 .settings {
   background: darken($material-grey-primary, 4%);
   color: white;
-
-  .form {
-    padding: $spacing-medium;
-
-    h3 {
-      font-size: 12px;
-      font-weight: $regular;
-      margin: 0;
-    }
-
-    .form-item {
-      width: 100%;
-
-      label {
-        display: block;
-        color: $material-grey-secondary;
-        font-size: 12px;
-        margin-top: $spacing-medium;
-        margin-bottom: $spacing-small;
-      }
-
-      input {
-        width: 100%;
-        height: 30px;
-        background: $material-grey-primary;
-        color: $material-grey-secondary;
-        font-size: 14px;
-        font-weight: $bold;
-        border: 1px solid lighten($material-grey-primary, 4%);
-        outline: none;
-        padding: 0 $spacing-small;
-      }
-    }
-  }
 }
 </style>

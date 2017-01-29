@@ -39,9 +39,10 @@ export default {
     color: $material-grey-secondary;
     font-size: 14px;
     font-weight: $bold;
-    border: 1px solid lighten($material-grey-primary, 4%);
     outline: none;
     padding: 0 $spacing-small;
+    border: 1px solid lighten($material-grey-primary, 4%);
+    border-radius: $border-radius;
   }
 }
 </style>

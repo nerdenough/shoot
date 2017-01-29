@@ -76,7 +76,7 @@ export default {
       line-height: 60px;
       font-size: 32px;
       text-transform: uppercase;
-      border-radius: 3px;
+      border-radius: $border-radius;
       box-sizing: content-box;
       border: 2px solid $material-pink-primary;
 

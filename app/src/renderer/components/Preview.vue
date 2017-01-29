@@ -6,11 +6,15 @@
       <div class="button">Upload</div>
     </div>
     {{ this.url }}
+    <div v-for="image in images">
+      <img :src="image">
+    </div>
   </div>
 </template>
 
 <script>
 import ElectronConfig from 'electron-config';
+import { images } from '../main';
 const config = new ElectronConfig();
 
 function fileUploadSuccess(res) {
@@ -19,17 +23,6 @@ function fileUploadSuccess(res) {
 
 function fileUploadError(err) {
   console.log(err);
-}
-
-function onPaste(e) {
-  e.clipboardData.types.map((type, i) => {
-    if (type.match('Files')) {
-      const blob = e.clipboardData.items[i].getAsFile();
-      const url = window.URL;
-      const source = url.createObjectURL(blob);
-      console.log(source);
-    }
-  });
 }
 
 function onFileChange(e) {
@@ -54,13 +47,11 @@ function onFileChange(e) {
 export default {
   name: 'preview',
   data: () => ({
-    url: ''
+    url: '',
+    images
   }),
   methods: {
     onFileChange
-  },
-  created: () => {
-    document.addEventListener('paste', onPaste);
   }
 };
 </script>

@@ -25,5 +25,11 @@ export default {
 @import '../../../variables.scss';
 
 .image-list {
+  flex-grow: 1;
+  overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 </style>

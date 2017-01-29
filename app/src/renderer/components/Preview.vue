@@ -1,10 +1,11 @@
 <template>
   <div class="preview">
     <!-- TODO: Hide and trigger file on click -->
-    <input type="file" @change="onFileChange"></input>
     <image-list :images="images"></image-list>
     <div class="buttons">
-      <div class="button">Upload</div>
+      <input type="file" class="input-file" id="file" @change="onFileChange"></input>
+      <label for="file" class="button">Add File</label>
+      <button class="button">Upload</button>
     </div>
     {{ this.url }}
   </div>
@@ -62,30 +63,50 @@ export default {
 @import '../../variables.scss';
 
 .preview {
-  position: relative;
+  display: flex;
+  flex-direction: column;
   flex-grow: 1;
+  position: relative;
   background: white;
 
   .buttons {
+    padding: $spacing-medium;
+    border-top: 1px solid #cecece;
+    border-left: 1px solid #cecece;
+    border-right: 1px solid #cecece;
+    text-align: center;
+
+    // FIXME: A bit hacky
+    button {
+      position: relative;
+      top: -1px;
+    }
+
     .button {
-      width: 200px;
-      height: 60px;
+      display: inline-block;
+      width: 120px;
+      height: 40px;
       background: $material-pink-primary;
       color: white;
       text-align: center;
       cursor: pointer;
-      line-height: 60px;
-      font-size: 32px;
+      line-height: 40px;
+      font-size: 18px;
       text-transform: uppercase;
+      border: 2px solid $material-pink-primary;
       border-radius: $border-radius;
       box-sizing: content-box;
-      border: 2px solid $material-pink-primary;
+      padding: 0;
       margin: 0 auto;
 
       &:hover {
         background: white;
         color: $material-pink-primary;
       }
+    }
+
+    .input-file {
+      display: none;
     }
   }
 }

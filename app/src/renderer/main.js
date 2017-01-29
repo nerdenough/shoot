@@ -8,7 +8,11 @@ Vue.config.debug = true;
 
 import App from './App';
 
-export const images = [];
+export let images = [];
+
+export function deleteImage(index) {
+  images.splice(index, 1);
+}
 
 function onPaste(e) {
   e.clipboardData.types.map((type, i) => {

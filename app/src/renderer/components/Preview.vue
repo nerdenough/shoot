@@ -1,7 +1,7 @@
 <template>
   <div class="preview">
     <!-- TODO: Hide and trigger file on click -->
-    <image-list :images="images"></image-list>
+    <image-list :images="images" :deleteImage="this.deleteImage"></image-list>
     <div class="buttons">
       <input type="file" class="input-file" id="file" @change="onFileChange"></input>
       <label for="file" class="button">Add File</label>
@@ -14,8 +14,12 @@
 <script>
 import ImageList from './Preview/ImageList';
 import ElectronConfig from 'electron-config';
-import { images } from '../main';
+import { images, deleteImage as del } from '../main';
 const config = new ElectronConfig();
+
+function deleteImage(index) {
+  del(index);
+}
 
 function fileUploadSuccess(res) {
   this.url = res.body.url;
@@ -54,7 +58,8 @@ export default {
     images
   }),
   methods: {
-    onFileChange
+    onFileChange,
+    deleteImage
   }
 };
 </script>

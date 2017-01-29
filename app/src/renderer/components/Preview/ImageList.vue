@@ -1,6 +1,11 @@
 <template>
   <div class="image-list">
-    <image-item v-for="image in images" :image="image"></image-item>
+    <image-item
+      v-for="(image, index) in images"
+      :image="image"
+      :index="index"
+      :deleteImage="deleteImage">
+    </image-item>
   </div>
 </template>
 
@@ -15,6 +20,10 @@ export default {
   props: {
     images: {
       type: Array,
+      required: true
+    },
+    deleteImage: {
+      type: Function,
       required: true
     }
   }

@@ -17,7 +17,6 @@ function onPaste(e) {
       const url = window.URL;
       const source = url.createObjectURL(blob);
       images.push(source);
-      console.log(images);
     }
   });
 }

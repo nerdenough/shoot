@@ -27,6 +27,8 @@ export default {
 .image-list {
   flex-grow: 1;
   overflow-y: scroll;
+  border: 1px solid #cecece;
+  border-bottom: 0;
 }
 
 ::-webkit-scrollbar {

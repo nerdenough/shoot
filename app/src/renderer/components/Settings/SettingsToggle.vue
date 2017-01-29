@@ -1,20 +1,20 @@
 <template>
-  <div @click="this.collapse" class="collapse-toggle">
+  <div @click="this.toggle" class="settings-toggle">
     <h3>Settings</h3>
-    <i v-if="this.collapsed" class="fa fa-chevron-down toggle"></i>
-    <i v-if="!this.collapsed" class="fa fa-chevron-up toggle"></i>
+    <i v-if="this.visible" class="fa fa-chevron-up chevron"></i>
+    <i v-if="!this.visible" class="fa fa-chevron-down chevron"></i>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'collapse-toggle',
+  name: 'settings-toggle',
   props: {
-    collapse: {
+    toggle: {
       type: Function,
       required: true
     },
-    collapsed: {
+    visible: {
       type: Boolean,
       required: true
     }
@@ -26,7 +26,7 @@ export default {
 @import '../../../variables.scss';
 $height: 30px;
 
-.collapse-toggle {
+.settings-toggle {
   display: flex;
   width: 100%;
   height: $height;
@@ -43,7 +43,7 @@ $height: 30px;
     margin: 0;
   }
 
-  .toggle {
+  .chevron {
     font-size: $settings-icon;
     line-height: $height;
   }

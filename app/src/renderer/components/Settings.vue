@@ -1,29 +1,29 @@
 <template>
   <div class="settings">
-    <collapse-toggle v-bind:collapse="this.collapse" v-bind:collapsed="this.collapsed"></collapse-toggle>
-    <aws-settings v-if="!this.collapsed"></aws-settings>
+    <settings-toggle v-bind:toggle="this.toggle" v-bind:visible="this.visible"></settings-toggle>
+    <aws-settings v-if="this.visible"></aws-settings>
   </div>
 </template>
 
 <script>
-import CollapseToggle from './Settings/CollapseToggle';
+import SettingsToggle from './Settings/SettingsToggle';
 import AwsSettings from './Settings/AwsSettings';
 
-function collapse() {
-  this.collapsed = !this.collapsed;
+function toggle() {
+  this.visible = !this.visible;
 }
 
 export default {
   name: 'settings',
   components: {
-    CollapseToggle,
+    SettingsToggle,
     AwsSettings
   },
   data: () => ({
-    collapsed: true
+    visible: false
   }),
   methods: {
-    collapse
+    toggle
   }
 };
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div class="settings">
-    <collapse-toggle></collapse-toggle>
-    <div class="form">
+    <collapse-toggle v-bind:collapse="this.collapse" v-bind:collapsed="this.collapsed"></collapse-toggle>
+    <div class="form" v-if="!this.collapsed">
       <h3>AWS Config</h3>
       <div class="form-item">
         <label for="bucket">URL</label>
@@ -45,6 +45,10 @@ function onSecretAccessKeyChange() {
   config.set('aws.secretAccessKey', this.secretAccessKey);
 }
 
+function collapse() {
+  this.collapsed = !this.collapsed;
+}
+
 export default {
   name: 'settings',
   components: { CollapseToggle },
@@ -52,13 +56,15 @@ export default {
     url: config.get('aws.url'),
     bucket: config.get('aws.bucket'),
     accessKeyId: config.get('aws.accessKeyId'),
-    secretAccessKey: config.get('aws.secretAccessKey')
+    secretAccessKey: config.get('aws.secretAccessKey'),
+    collapsed: true
   }),
   methods: {
     onUrlChange,
     onBucketChange,
     onAccessKeyIdChange,
-    onSecretAccessKeyChange
+    onSecretAccessKeyChange,
+    collapse
   }
 };
 </script>

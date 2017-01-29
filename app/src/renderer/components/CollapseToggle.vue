@@ -1,13 +1,24 @@
 <template>
-  <div class="collapse-toggle">
+  <div @click="this.collapse" class="collapse-toggle">
     <h3>Settings</h3>
-    <i class="fa fa-chevron-down toggle"></i>
+    <i v-if="this.collapsed" class="fa fa-chevron-down toggle"></i>
+    <i v-if="!this.collapsed" class="fa fa-chevron-up toggle"></i>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'collapse-toggle'
+  name: 'collapse-toggle',
+  props: {
+    collapse: {
+      type: Function,
+      required: true
+    },
+    collapsed: {
+      type: Boolean,
+      required: true
+    }
+  }
 };
 </script>
 
@@ -22,6 +33,7 @@ $height: 30px;
   background: $material-grey-primary;
   color: $material-grey-secondary;
   padding: 0 $spacing-medium;
+  cursor: pointer;
 
   h3 {
     flex-grow: 1;

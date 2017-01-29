@@ -1,16 +1,11 @@
 <template>
   <div class="preview">
+    <!-- TODO: Hide and trigger file on click -->
+    <input type="file" @change="onFileChange"></input>
     <div class="buttons">
-      <div class="button" title="Take a screenshot">
-        <i class="fa fa-camera icon"></i>
-      </div>
-      <div class="button" title="Record your screen">
-        <i class="fa fa-video-camera icon"></i>
-      </div>
-      <input type="file" @change="onFileChange" class="button" title="Upload an existing file">
-        <i class="fa fa-file icon"></i>
-      </input>
+      <div class="button">Upload</div>
     </div>
+    {{ this.url }}
   </div>
 </template>
 
@@ -19,7 +14,7 @@ import ElectronConfig from 'electron-config';
 const config = new ElectronConfig();
 
 function fileUploadSuccess(res) {
-  console.log('SUCCESS', res);
+  this.url = res.body.url;
 }
 
 function fileUploadError(err) {
@@ -36,6 +31,7 @@ function onFileChange(e) {
       .post('http://localhost:3000/upload', {
         path: file.path,
         type: file.type,
+        url: config.get('aws.url'),
         bucket: config.get('aws.bucket'),
         accessKeyId: config.get('aws.accessKeyId'),
         secretAccessKey: config.get('aws.secretAccessKey')
@@ -46,6 +42,9 @@ function onFileChange(e) {
 
 export default {
   name: 'preview',
+  data: () => ({
+    url: ''
+  }),
   methods: {
     onFileChange
   }
@@ -54,12 +53,11 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../variables.scss';
-$button-size: 100px;
 
 .preview {
   position: relative;
   flex-grow: 1;
-  background: $bg-primary;
+  background: white;
 
   .buttons {
     display: flex;
@@ -69,26 +67,22 @@ $button-size: 100px;
     transform: translate(-50%, -50%);
 
     .button {
-      width: $button-size;
-      height: $button-size;
+      width: 200px;
+      height: 60px;
+      background: $material-pink-primary;
+      color: white;
       text-align: center;
       cursor: pointer;
+      line-height: 60px;
+      font-size: 32px;
+      text-transform: uppercase;
+      border-radius: 3px;
+      box-sizing: content-box;
       border: 2px solid $material-pink-primary;
-      border-radius: $button-size;
-      margin: 0 $spacing-medium;
 
       &:hover {
-        background: $material-pink-primary;
-
-        .icon {
-          color: white;
-        }
-      }
-
-      .icon {
+        background: white;
         color: $material-pink-primary;
-        font-size: 24px;
-        line-height: $button-size;
       }
     }
   }

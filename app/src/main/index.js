@@ -6,7 +6,7 @@ import cors from 'cors';
 import shortid from 'shortid';
 import AWS from 'aws-sdk';
 
-import { app, BrowserWindow } from 'electron';
+import { ipcMain, app, BrowserWindow } from 'electron';
 
 const server = express();
 server.use(bodyParser.json());
@@ -25,6 +25,7 @@ server.post('/upload', (req, res) => {
     }
 
     const ext = path.extname(req.body.path);
+    const key = `${shortid.generate()}${ext}`;
 
     AWS.config.update({
       credentials: {
@@ -36,7 +37,7 @@ server.post('/upload', (req, res) => {
     const s3 = new AWS.S3();
     const params = {
       Bucket: req.body.bucket,
-      Key: `${shortid.generate()}${ext}`,
+      Key: key,
       Body: new Buffer(data),
       ContentType: req.body.type
     };
@@ -45,7 +46,9 @@ server.post('/upload', (req, res) => {
       .putObject(params)
       .promise()
       .then((data) => {
-        console.log('SUCCESS', data);
+        res.json({
+          url: `${req.body.url}/${key}`
+        });
       }, (err) => console.log(err));
   });
 });
@@ -63,7 +66,7 @@ function createWindow () {
    */
   mainWindow = new BrowserWindow({
     width: 400,
-    height: 400,
+    height: 600,
     frame: false,
     transparent: true
   });
@@ -79,6 +82,11 @@ function createWindow () {
   // eslint-disable-next-line no-console
   console.log('mainWindow opened');
 };
+
+ipcMain.on('newHeight', (event, height) => {
+  const currentDimensions = mainWindow.getSize();
+  mainWindow.setSize(currentDimensions[0], Number.parseInt(height), true);
+});
 
 app.on('ready', createWindow);
 

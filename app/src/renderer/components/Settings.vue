@@ -4,6 +4,10 @@
     <div class="form">
       <h3>AWS Config</h3>
       <div class="form-item">
+        <label for="bucket">URL</label>
+        <input v-model="url" @keyup="onUrlChange" type="text">
+      </div>
+      <div class="form-item">
         <label for="bucket">S3 Bucket Name</label>
         <input v-model="bucket" @keyup="onBucketChange" type="text">
       </div>
@@ -25,6 +29,10 @@ import CollapseToggle from './CollapseToggle';
 
 const config = new ElectronConfig();
 
+function onUrlChange() {
+  config.set('aws.url', this.url);
+}
+
 function onBucketChange() {
   config.set('aws.bucket', this.bucket);
 }
@@ -41,11 +49,13 @@ export default {
   name: 'settings',
   components: { CollapseToggle },
   data: () => ({
+    url: config.get('aws.url'),
     bucket: config.get('aws.bucket'),
     accessKeyId: config.get('aws.accessKeyId'),
     secretAccessKey: config.get('aws.secretAccessKey')
   }),
   methods: {
+    onUrlChange,
     onBucketChange,
     onAccessKeyIdChange,
     onSecretAccessKeyChange

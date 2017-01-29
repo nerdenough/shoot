@@ -21,6 +21,17 @@ function fileUploadError(err) {
   console.log(err);
 }
 
+function onPaste(e) {
+  e.clipboardData.types.map((type, i) => {
+    if (type.match('Files')) {
+      const blob = e.clipboardData.items[i].getAsFile();
+      const url = window.URL;
+      const source = url.createObjectURL(blob);
+      console.log(source);
+    }
+  });
+}
+
 function onFileChange(e) {
   const files = e.target.files || e.dataTransfer.files;
 
@@ -47,6 +58,9 @@ export default {
   }),
   methods: {
     onFileChange
+  },
+  created: () => {
+    document.addEventListener('paste', onPaste);
   }
 };
 </script>

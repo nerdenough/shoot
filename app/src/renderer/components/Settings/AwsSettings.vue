@@ -1,47 +1,38 @@
 <template>
   <div class="settings aws">
     <h3>AWS Config</h3>
-    <div class="form-item">
-      <label for="bucket">URL</label>
-      <input v-model="url" @keyup="onUrlChange" type="text">
-    </div>
-    <div class="form-item">
-      <label for="bucket">S3 Bucket Name</label>
-      <input v-model="bucket" @keyup="onBucketChange" type="text">
-    </div>
-    <div class="form-item">
-      <label for="bucket">Access Key ID</label>
-      <input v-model="accessKeyId" @keyup="onAccessKeyIdChange" type="text">
-    </div>
-    <div class="form-item">
-      <label for="bucket">Secret Access Key</label>
-      <input v-model="secretAccessKey" @keyup="onSecretAccessKeyChange" type="text">
-    </div>
+    <text-field label="URL" @change="onUrlChange" v-model="this.url"></text-field>
+    <text-field label="S3 Bucket Name" @change="onBucketChange" v-model="this.bucket"></text-field>
+    <text-field label="Access Key Id" @change="onAccessKeyIdChange" v-model="this.accessKeyId"></text-field>
+    <text-field label="Secret Access Key" @change="onSecretAccessKeyChange" v-model="this.secretAccessKey"></text-field>
   </div>
 </template>
 
 <script>
+import TextField from './Form/TextField';
 import ElectronConfig from 'electron-config';
 const config = new ElectronConfig();
 
-function onUrlChange() {
-  config.set('aws.url', this.url);
+function onUrlChange(url) {
+  console.log(url);
+  config.set('aws.url', url);
 }
 
-function onBucketChange() {
-  config.set('aws.bucket', this.bucket);
+function onBucketChange(bucket) {
+  config.set('aws.bucket', bucket);
 }
 
-function onAccessKeyIdChange() {
-  config.set('aws.accessKeyId', this.accessKeyId);
+function onAccessKeyIdChange(accessKeyId) {
+  config.set('aws.accessKeyId', accessKeyId);
 }
 
-function onSecretAccessKeyChange() {
-  config.set('aws.secretAccessKey', this.secretAccessKey);
+function onSecretAccessKeyChange(secretAccessKey) {
+  config.set('aws.secretAccessKey', secretAccessKey);
 }
 
 export default {
   name: 'aws-settings',
+  components: { TextField },
   data: () => ({
     url: config.get('aws.url'),
     bucket: config.get('aws.bucket'),
@@ -67,30 +58,6 @@ export default {
     font-size: 12px;
     font-weight: $regular;
     margin: 0;
-  }
-
-  .form-item {
-    width: 100%;
-
-    label {
-      display: block;
-      color: $material-grey-secondary;
-      font-size: 12px;
-      margin-top: $spacing-medium;
-      margin-bottom: $spacing-small;
-    }
-
-    input {
-      width: 100%;
-      height: 30px;
-      background: $material-grey-primary;
-      color: $material-grey-secondary;
-      font-size: 14px;
-      font-weight: $bold;
-      border: 1px solid lighten($material-grey-primary, 4%);
-      outline: none;
-      padding: 0 $spacing-small;
-    }
   }
 }
 </style>

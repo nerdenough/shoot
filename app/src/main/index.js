@@ -5,52 +5,51 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import shortid from 'shortid';
 import AWS from 'aws-sdk';
+import ElectronConfig from 'electron-config';
 
-import { ipcMain, app, BrowserWindow } from 'electron';
+import { app, BrowserWindow } from 'electron';
 
+const config = new ElectronConfig();
 const server = express();
+server.use(bodyParser({ limit: '10mb' }));
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: false }));
 server.use(cors());
 
 server.post('/upload', (req, res) => {
-  if (!req.body.path) {
-    reply(500);
+  if (!req.body.buffer || !req.body.type) {
+    return res.sendStatus(500);
   }
 
-  fs.readFile(req.body.path, (err, data) => {
-    if (err) {
-      console.error(err);
-      reply(500);
+  const ext = req.body.type.split('/')[1];
+  const key = `${shortid.generate()}.${ext}`;
+
+  AWS.config.update({
+    credentials: {
+      accessKeyId: config.get('aws.accessKeyId'),
+      secretAccessKey: config.get('aws.secretAccessKey')
     }
-
-    const ext = path.extname(req.body.path);
-    const key = `${shortid.generate()}${ext}`;
-
-    AWS.config.update({
-      credentials: {
-        accessKeyId: req.body.accessKeyId,
-        secretAccessKey: req.body.secretAccessKey
-      }
-    });
-
-    const s3 = new AWS.S3();
-    const params = {
-      Bucket: req.body.bucket,
-      Key: key,
-      Body: new Buffer(data),
-      ContentType: req.body.type
-    };
-
-    s3
-      .putObject(params)
-      .promise()
-      .then((data) => {
-        res.json({
-          url: `${req.body.url}/${key}`
-        });
-      }, (err) => console.log(err));
   });
+
+  const s3 = new AWS.S3();
+  const params = {
+    Bucket: config.get('aws.bucket'),
+    Key: key,
+    Body: Buffer.from(req.body.buffer),
+    ContentType: req.body.type
+  };
+
+  s3
+    .putObject(params)
+    .promise()
+    .then((data) => {
+      return res.json({
+        url: `${config.get('aws.url')}/${key}`
+      });
+    }, (err) => {
+      console.log(err);
+      return res.sendStatus(500);
+    });
 });
 
 server.listen(3000);
@@ -82,11 +81,6 @@ function createWindow () {
   // eslint-disable-next-line no-console
   console.log('mainWindow opened');
 };
-
-ipcMain.on('newHeight', (event, height) => {
-  const currentDimensions = mainWindow.getSize();
-  mainWindow.setSize(currentDimensions[0], Number.parseInt(height), true);
-});
 
 app.on('ready', createWindow);
 

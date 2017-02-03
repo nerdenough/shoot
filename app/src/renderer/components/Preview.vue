@@ -5,15 +5,16 @@
     <div class="buttons">
       <input type="file" class="input-file" id="file" @change="onFileChange"></input>
       <label for="file" class="button">Add File</label>
-      <button class="button">Upload</button>
+      <button @click="upload" class="button">Upload</button>
     </div>
     {{ this.url }}
   </div>
 </template>
 
 <script>
-import ImageList from './Preview/ImageList';
 import ElectronConfig from 'electron-config';
+import toBuffer from 'blob-to-buffer';
+import ImageList from './Preview/ImageList';
 import { images, deleteImage as del } from '../main';
 const config = new ElectronConfig();
 
@@ -29,6 +30,24 @@ function fileUploadError(err) {
   console.log(err);
 }
 
+function upload() {
+  images.map((image) => {
+    toBuffer(image.blob, (err, buffer) => {
+      if (err) {
+        return console.log(err);
+      }
+
+      this.$http
+        .post('http://localhost:3000/upload', {
+          buffer,
+          type: image.blob.type
+        })
+        .then(fileUploadSuccess, fileUploadError);
+    });
+  });
+}
+
+// TODO: Integrate into upload
 function onFileChange(e) {
   const files = e.target.files || e.dataTransfer.files;
 
@@ -36,7 +55,7 @@ function onFileChange(e) {
     const file = files[0];
 
     this.$http
-      .post('http://localhost:3000/upload', {
+      .post('http://localhost:3000/aws', {
         path: file.path,
         type: file.type,
         url: config.get('aws.url'),
@@ -58,6 +77,7 @@ export default {
     images
   }),
   methods: {
+    upload,
     onFileChange,
     deleteImage
   }

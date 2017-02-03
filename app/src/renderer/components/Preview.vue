@@ -1,7 +1,7 @@
 <template>
   <div class="preview">
-    <!-- TODO: Hide and trigger file on click -->
-    <image-list :images="images" :deleteImage="this.deleteImage"></image-list>
+    <help-text v-if="!images.length"></help-text>
+    <image-list v-if="images.length" :images="images" :deleteImage="this.deleteImage"></image-list>
     <div class="buttons">
       <input type="file" class="input-file" id="file" @change="onFileChange"></input>
       <label for="file" class="button">Add File</label>
@@ -15,6 +15,7 @@
 import ElectronConfig from 'electron-config';
 import toBuffer from 'blob-to-buffer';
 import ImageList from './Preview/ImageList';
+import HelpText from './Preview/HelpText';
 import { images, deleteImage as del } from '../main';
 const config = new ElectronConfig();
 
@@ -78,7 +79,8 @@ function onFileChange(e) {
 export default {
   name: 'preview',
   components: {
-    ImageList
+    ImageList,
+    HelpText
   },
   data: () => ({
     url: '',
@@ -101,15 +103,13 @@ export default {
   flex-grow: 1;
   position: relative;
   background: white;
+  border: 1px solid #cecece;
 
   .buttons {
     padding: $spacing-medium;
     border-top: 1px solid #cecece;
-    border-left: 1px solid #cecece;
-    border-right: 1px solid #cecece;
     text-align: center;
 
-    // FIXME: A bit hacky
     button {
       position: relative;
       top: -1px;

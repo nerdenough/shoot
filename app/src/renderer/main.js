@@ -22,7 +22,8 @@ function onPaste(e) {
       const source = url.createObjectURL(blob);
       images.push({
         blob,
-        source
+        source,
+        uploading: false
       });
     }
   });

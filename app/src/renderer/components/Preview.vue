@@ -22,8 +22,9 @@ function deleteImage(index) {
   del(index);
 }
 
-function fileUploadSuccess(res) {
-  this.url = res.body.url;
+function fileUploadSuccess(res, image) {
+  image.url = res.body.url;
+  image.uploading = false;
 }
 
 function fileUploadError(err) {
@@ -32,18 +33,25 @@ function fileUploadError(err) {
 
 function upload() {
   images.map((image) => {
-    toBuffer(image.blob, (err, buffer) => {
-      if (err) {
-        return console.log(err);
-      }
+    // Only upload if the image has not been uploaded already
+    if (!image.url) {
+      image.uploading = true;
 
-      this.$http
-        .post('http://localhost:3000/upload', {
-          buffer,
-          type: image.blob.type
-        })
-        .then(fileUploadSuccess, fileUploadError);
-    });
+      // Convert blob to buffer
+      toBuffer(image.blob, (err, buffer) => {
+        if (err) {
+          return console.log(err);
+        }
+
+        // Upload buffer as array
+        this.$http
+          .post('http://localhost:3000/upload', {
+            buffer,
+            type: image.blob.type
+          })
+          .then((res) => fileUploadSuccess(res, image), fileUploadError);
+      });
+    }
   });
 }
 

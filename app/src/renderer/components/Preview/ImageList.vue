@@ -4,6 +4,7 @@
       v-for="(image, index) in images"
       :image="image"
       :index="index"
+      :uploading="image.uploading"
       :deleteImage="deleteImage">
     </image-item>
   </div>

@@ -4,9 +4,14 @@
   "description": "Shoot images to the cloud",
   "main": "./dist/main.js",
   "dependencies": {
+    "aws-sdk": "^2.9.0",
     "blob-to-buffer": "^1.2.6",
+    "body-parser": "^1.16.0",
     "clipboard-js": "^0.3.2",
+    "cors": "^2.8.1",
     "electron-config": "^0.2.1",
+    "express": "^4.14.1",
+    "shortid": "^2.2.6",
     "vue": "^2.1.10",
     "vue-electron": "^1.0.6",
     "vue-resource": "^1.0.3"

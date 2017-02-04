@@ -105,12 +105,5 @@
     "webpack-dev-server": "^2.2.0",
     "webpack-merge": "^2.4.0"
   },
-  "dependencies": {
-    "aws-sdk": "^2.9.0",
-    "body-parser": "^1.16.0",
-    "cors": "^2.8.1",
-    "electron-config": "^0.2.1",
-    "express": "^4.14.0",
-    "shortid": "^2.2.6"
-  }
+  "dependencies": {}
 }

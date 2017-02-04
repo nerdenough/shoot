@@ -51,7 +51,7 @@ $height: 40px;
     background: $highlight;
     color: white;
     width: $height;
-    font-size: $settings-icon;
+    font-size: 16px;
     line-height: $height;
     text-align: center;
   }

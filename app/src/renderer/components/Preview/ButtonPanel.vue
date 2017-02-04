@@ -8,7 +8,7 @@
       <i class="fa fa-arrow-up"></i>
     </button>
 
-    <button class="button">
+    <button class="button" @click="toggleSettings">
       <i class="fa fa-cog"></i>
     </button>
   </div>
@@ -19,6 +19,10 @@ export default {
   name: 'button-panel',
   props: {
     upload: {
+      type: Function,
+      required: true
+    },
+    toggleSettings: {
       type: Function,
       required: true
     }

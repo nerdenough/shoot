@@ -32,7 +32,8 @@ export default {
 @import '../../variables.scss';
 
 .settings {
-  background: darken($material-grey-primary, 4%);
+  background: $primary;
+  flex-grow: 1;
   color: white;
 }
 </style>

@@ -2,7 +2,7 @@
   <div class="preview">
     <help-text v-if="!images.length"></help-text>
     <image-list v-if="images.length" :images="images" :deleteImage="this.deleteImage"></image-list>
-    <button-panel :upload="upload"></button-panel>
+    <button-panel :upload="upload" :toggleSettings="toggleSettings"></button-panel>
   </div>
 </template>
 
@@ -87,6 +87,12 @@ export default {
     upload,
     onFileChange,
     deleteImage
+  },
+  props: {
+    toggleSettings: {
+      type: Function,
+      required: true
+    }
   }
 };
 </script>

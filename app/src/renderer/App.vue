@@ -1,5 +1,5 @@
 <template>
-  <div class="app" @keyup.ctrl="this.pasteImage">
+  <div class="app">
     <top-bar></top-bar>
     <preview></preview>
     <settings></settings>

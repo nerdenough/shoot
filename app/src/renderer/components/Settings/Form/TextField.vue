@@ -26,31 +26,31 @@ export default {
 
   label {
     display: block;
-    color: $material-grey-secondary;
-    font-size: 12px;
-    margin-top: $spacing-medium;
-    margin-bottom: $spacing-small;
+    color: lighten($tertiary, 4%);
+    font-size: 16px;
+    font-weight: $bold;
   }
 
   input {
     width: 100%;
-    height: 30px;
-    background: $material-grey-primary;
-    color: $material-grey-secondary;
-    font-size: 14px;
+    height: 40px;
+    background: $tertiary;
+    color: white;
+    font-size: 16px;
     font-weight: $bold;
     outline: none;
     padding: 0 $spacing-small;
-    border: 1px solid lighten($material-grey-primary, 4%);
-    border-radius: $border-radius;
+    border: 1px none;
+    margin-top: $spacing-small;
+    margin-bottom: $spacing-medium;
 
     &:hover {
-      border: 1px solid lighten($material-grey-primary, 8%);
+      color: darken(white, 20%);
     }
 
     &:focus {
+      background: $highlight-dark;
       color: white;
-      border: 1px solid lighten($material-grey-primary, 8%);
     }
   }
 }

@@ -2,20 +2,16 @@
   <div class="preview">
     <help-text v-if="!images.length"></help-text>
     <image-list v-if="images.length" :images="images" :deleteImage="this.deleteImage"></image-list>
-    <div class="buttons">
-      <input type="file" class="input-file" id="file" @change="onFileChange"></input>
-      <label for="file" class="button">Add File</label>
-      <button @click="upload" class="button">Upload</button>
-    </div>
-    {{ this.url }}
+    <button-panel :upload="upload" :toggleSettings="toggleSettings"></button-panel>
   </div>
 </template>
 
 <script>
 import ElectronConfig from 'electron-config';
 import toBuffer from 'blob-to-buffer';
-import ImageList from './Preview/ImageList';
 import HelpText from './Preview/HelpText';
+import ImageList from './Preview/ImageList';
+import ButtonPanel from './Preview/ButtonPanel';
 import { images, deleteImage as del } from '../main';
 const config = new ElectronConfig();
 
@@ -79,8 +75,9 @@ function onFileChange(e) {
 export default {
   name: 'preview',
   components: {
-    ImageList,
-    HelpText
+    ButtonPanel,
+    HelpText,
+    ImageList
   },
   data: () => ({
     url: '',
@@ -90,6 +87,12 @@ export default {
     upload,
     onFileChange,
     deleteImage
+  },
+  props: {
+    toggleSettings: {
+      type: Function,
+      required: true
+    }
   }
 };
 </script>
@@ -102,45 +105,6 @@ export default {
   flex-direction: column;
   flex-grow: 1;
   position: relative;
-  background: white;
-  border: 1px solid #cecece;
-
-  .buttons {
-    padding: $spacing-medium;
-    border-top: 1px solid #cecece;
-    text-align: center;
-
-    button {
-      position: relative;
-      top: -1px;
-    }
-
-    .button {
-      display: inline-block;
-      width: 120px;
-      height: 40px;
-      background: $material-pink-primary;
-      color: white;
-      text-align: center;
-      cursor: pointer;
-      line-height: 40px;
-      font-size: 18px;
-      text-transform: uppercase;
-      border: 2px solid $material-pink-primary;
-      border-radius: $border-radius;
-      box-sizing: content-box;
-      padding: 0;
-      margin: 0 auto;
-
-      &:hover {
-        background: white;
-        color: $material-pink-primary;
-      }
-    }
-
-    .input-file {
-      display: none;
-    }
-  }
+  background: $primary;
 }
 </style>

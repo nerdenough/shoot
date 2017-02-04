@@ -1,8 +1,8 @@
 <template>
-  <div @click="this.toggle" class="settings-toggle">
-    <h3>Settings</h3>
-    <i v-if="this.visible" class="fa fa-chevron-up chevron"></i>
-    <i v-if="!this.visible" class="fa fa-chevron-down chevron"></i>
+  <div @click="toggle" class="settings-toggle">
+    <h3>{{ title }}</h3>
+    <i v-if="visible" class="fa fa-chevron-up chevron"></i>
+    <i v-if="!visible" class="fa fa-chevron-down chevron"></i>
   </div>
 </template>
 
@@ -17,6 +17,10 @@ export default {
     visible: {
       type: Boolean,
       required: true
+    },
+    title: {
+      type: String,
+      required: true
     }
   }
 };
@@ -24,28 +28,32 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../../variables.scss';
-$height: 30px;
+$height: 40px;
 
 .settings-toggle {
   display: flex;
   width: 100%;
   height: $height;
-  background: $material-grey-primary;
-  color: $material-grey-secondary;
-  padding: 0 $spacing-medium;
+  background: $secondary;
+  color: lighten($tertiary, 50%);
   cursor: pointer;
 
   h3 {
     flex-grow: 1;
-    font-size: $settings-header;
+    font-size: 16px;
     font-weight: $bold;
     line-height: $height;
+    padding-left: $spacing-medium;
     margin: 0;
   }
 
   .chevron {
-    font-size: $settings-icon;
+    background: $highlight;
+    color: white;
+    width: $height;
+    font-size: 16px;
     line-height: $height;
+    text-align: center;
   }
 }
 </style>

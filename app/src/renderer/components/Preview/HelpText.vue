@@ -1,6 +1,6 @@
 <template>
   <div class="help-text">
-    <span class="message">&#8984; + V to paste an image</span>
+    <span class="message">Paste an image</span>
   </div>
 </template>
 
@@ -26,7 +26,7 @@ export default {
     top: 50%;
     left: 50%;
     max-width: 200px;
-    color: #cecece;
+    color: $secondary;
     font-size: 48px;
     text-align: center;
     font-weight: $bold;

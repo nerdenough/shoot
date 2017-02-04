@@ -1,8 +1,8 @@
 <template>
   <div class="app">
     <top-bar></top-bar>
-    <preview></preview>
-    <settings></settings>
+    <preview v-if="!settings" :toggleSettings="toggleSettings"></preview>
+    <settings v-if="settings" :toggleSettings="toggleSettings"></settings>
   </div>
 </template>
 
@@ -11,11 +11,21 @@ import Preview from './components/Preview';
 import Settings from './components/Settings';
 import TopBar from './components/TopBar';
 
+function toggleSettings() {
+  this.settings = !this.settings;
+}
+
 export default {
   components: {
     Preview,
     Settings,
     TopBar
+  },
+  data: () => ({
+    settings: false
+  }),
+  methods: {
+    toggleSettings
   }
 };
 </script>

@@ -2,12 +2,7 @@
   <div class="preview">
     <help-text v-if="!images.length"></help-text>
     <image-list v-if="images.length" :images="images" :deleteImage="this.deleteImage"></image-list>
-    <div class="buttons">
-      <input type="file" class="input-file" id="file" @change="onFileChange"></input>
-      <label for="file" class="button">Add File</label>
-      <button @click="upload" class="button">Upload</button>
-    </div>
-    {{ this.url }}
+    <upload :upload="upload"></upload>
   </div>
 </template>
 
@@ -16,6 +11,7 @@ import ElectronConfig from 'electron-config';
 import toBuffer from 'blob-to-buffer';
 import ImageList from './Preview/ImageList';
 import HelpText from './Preview/HelpText';
+import Upload from './Preview/Upload';
 import { images, deleteImage as del } from '../main';
 const config = new ElectronConfig();
 
@@ -80,7 +76,8 @@ export default {
   name: 'preview',
   components: {
     ImageList,
-    HelpText
+    HelpText,
+    Upload
   },
   data: () => ({
     url: '',

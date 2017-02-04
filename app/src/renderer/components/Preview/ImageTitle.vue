@@ -1,6 +1,6 @@
 <template>
   <div class="image-title">
-    <div class="title"><!-- TODO --></div>
+    <div class="title">some-file.png</div>
     <button @click="deleteItem" class="button delete">
       <i class="fa fa-close"></i>
     </button>
@@ -25,11 +25,15 @@ export default {
 .image-title {
   display: flex;
   flex-direction: row;
-  background: $tertiary;
+  background: $secondary;
   height: 40px;
 
   .title {
+    color: white;
+    font-weight: $bold;
+    line-height: 40px;
     flex-grow: 1;
+    padding-left: $spacing-medium;
   }
 
   .delete {

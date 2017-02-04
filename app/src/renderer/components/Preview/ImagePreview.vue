@@ -1,5 +1,7 @@
 <template>
-  <div class="image-preview" :style="{ backgroundImage: `url(${source})`}"></div>
+  <div class="image-preview">
+    <div class="image" :style="{ backgroundImage: `url(${source})`}"></div>
+  </div>
 </template>
 
 <script>
@@ -18,10 +20,14 @@ export default {
 @import '../../../variables.scss';
 
 .image-preview {
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  width: 100%;
-  height: 200px;
+  background: $secondary;
+
+  .image {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 200px;
+  }
 }
 </style>

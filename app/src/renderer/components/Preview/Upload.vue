@@ -45,6 +45,7 @@ export default {
     box-sizing: content-box;
     padding: 0;
     margin: 0 auto;
+    outline: none;
 
     &:hover {
       background: darken($highlight, 10%);

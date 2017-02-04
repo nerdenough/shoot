@@ -5,6 +5,9 @@
       </div>
       <div class="grow">
         <input type="text" class="url" v-if="image.url" :value="image.url" disabled>
+        <button class="copy" v-if="image.url" @click="copy">
+          <i class="fa fa-clipboard"></i>
+        </button>
       </div>
       <div v-if="uploading" class="uploading">
         <i class="fa fa-refresh fa-spin"></i>
@@ -17,14 +20,21 @@
 </template>
 
 <script>
+import clipboard from 'clipboard-js';
+
 function onClick() {
   this.deleteImage(this.index);
+}
+
+function copy() {
+  clipboard.copy(this.image.url);
 }
 
 export default {
   name: 'image-item',
   methods: {
-    onClick
+    onClick,
+    copy
   },
   props: {
     index: {
@@ -58,7 +68,7 @@ export default {
 
   .preview {
     position: relative;
-    width: 50px;
+    min-width: 50px;
     height: 50px;
     text-align: center;
 
@@ -73,22 +83,34 @@ export default {
   }
 
   .grow {
-    position: relative;
+    display: flex;
+    flex-direction: row;
     flex-grow: 1;
+    position: relative;
+    padding: $spacing-medium 0;
     margin-left: $spacing-medium;
 
     .url {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 100%;
-      height: 30px;
+      flex-grow: 1;
+      height: 100%;
       color: $material-grey-secondary;
       background: darken(white, 5%);
       border: 1px solid darken(white, 10%);
       padding: 0 $spacing-small;
       font-size: 14px;
-      transform: translate(-50%, -50%);
+    }
+
+    .copy {
+      width: 30px;
+      color: white;
+      background: $material-pink-primary;
+      border: none;
+      cursor: pointer;
+      outline: none;
+
+      &:hover {
+        color: $material-pink-secondary;
+      }
     }
   }
 

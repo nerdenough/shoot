@@ -34,7 +34,7 @@ export default {
 @import '../../variables.scss';
 
 .top-bar {
-  background: $material-pink-primary;
+  background: $highlight;
   display: flex;
   flex-direction: row;
   height: 30px;

@@ -102,12 +102,12 @@ export default {
   flex-direction: column;
   flex-grow: 1;
   position: relative;
-  background: white;
-  border: 1px solid #cecece;
+  background: $primary;
 
   .buttons {
     padding: $spacing-medium;
-    border-top: 1px solid #cecece;
+    background: $secondary;
+    border-top: 1px solid $secondary;
     text-align: center;
 
     button {
@@ -119,22 +119,20 @@ export default {
       display: inline-block;
       width: 120px;
       height: 40px;
-      background: $material-pink-primary;
+      background: $highlight;
       color: white;
       text-align: center;
       cursor: pointer;
       line-height: 40px;
       font-size: 18px;
-      text-transform: uppercase;
-      border: 2px solid $material-pink-primary;
+      border: none;
       border-radius: $border-radius;
       box-sizing: content-box;
       padding: 0;
       margin: 0 auto;
 
       &:hover {
-        background: white;
-        color: $material-pink-primary;
+        background: darken($highlight, 10%);
       }
     }
 

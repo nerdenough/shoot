@@ -1,13 +1,11 @@
 <template>
   <div class="image-item">
+    <image-title :deleteItem="deleteItem"></image-title>
     <div class="top">
       <image-preview :source="image.source"></image-preview>
       <div v-if="uploading" class="uploading">
         <i class="fa fa-refresh fa-spin"></i>
       </div>
-      <button v-if="!uploading && !image.url" @click="onClick" class="button delete">
-        <i class="fa fa-close"></i>
-      </button>
     </div>
     <div class="bottom">
       <div class="grow">
@@ -23,8 +21,9 @@
 <script>
 import clipboard from 'clipboard-js';
 import ImagePreview from './ImagePreview';
+import ImageTitle from './ImageTitle';
 
-function onClick() {
+function deleteItem() {
   this.deleteImage(this.index);
 }
 
@@ -35,10 +34,11 @@ function copy() {
 export default {
   name: 'image-item',
   components: {
-    ImagePreview
+    ImagePreview,
+    ImageTitle
   },
   methods: {
-    onClick,
+    deleteItem,
     copy
   },
   props: {
@@ -108,21 +108,6 @@ $image-preview: 100px;
     padding: 0 $spacing-medium;
     font-size: 24px;
     line-height: $image-preview;
-  }
-
-  .delete {
-    width: 40px;
-    background: $highlight;
-    color: white;
-    cursor: pointer;
-    outline: none;
-    padding: 0 $spacing-medium;
-    border: none;
-    font-size: 16px;
-
-    &:hover {
-      background: $highlight-dark;
-    }
   }
 }
 </style>

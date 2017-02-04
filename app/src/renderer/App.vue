@@ -2,7 +2,6 @@
   <div class="app">
     <top-bar></top-bar>
     <preview></preview>
-    <settings></settings>
   </div>
 </template>
 

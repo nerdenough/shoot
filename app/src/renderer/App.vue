@@ -2,7 +2,7 @@
   <div class="app">
     <top-bar></top-bar>
     <preview v-if="!settings" :toggleSettings="toggleSettings"></preview>
-    <settings v-if="settings"></settings>
+    <settings v-if="settings" :toggleSettings="toggleSettings"></settings>
   </div>
 </template>
 

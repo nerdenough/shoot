@@ -37,31 +37,32 @@ export default {
   background: $highlight;
   display: flex;
   flex-direction: row;
-  min-height: 30px;
-  height: 30px;
+  min-height: 50px;
+  height: 50px;
   -webkit-app-region: drag;
 
   .app-title {
     color: white;
     flex-grow: 1;
-    font-size: 15px;
+    font-size: 18px;
     font-weight: $bold;
     margin: 0;
-    line-height: 30px;
+    line-height: 50px;
     padding-left: $spacing-medium;
   }
 
   .close {
-    width: 30px;
+    width: 50px;
     background: transparent;
     color: white;
+    font-size: 18px;
     outline: none;
     cursor: pointer;
     border: none;
     -webkit-app-region: no-drag;
 
     &:hover {
-      color: $material-pink-secondary;
+      background: $highlight-dark;
     }
   }
 }

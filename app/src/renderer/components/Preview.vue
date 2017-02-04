@@ -2,16 +2,16 @@
   <div class="preview">
     <help-text v-if="!images.length"></help-text>
     <image-list v-if="images.length" :images="images" :deleteImage="this.deleteImage"></image-list>
-    <upload :upload="upload"></upload>
+    <button-panel :upload="upload"></button-panel>
   </div>
 </template>
 
 <script>
 import ElectronConfig from 'electron-config';
 import toBuffer from 'blob-to-buffer';
-import ImageList from './Preview/ImageList';
 import HelpText from './Preview/HelpText';
-import Upload from './Preview/Upload';
+import ImageList from './Preview/ImageList';
+import ButtonPanel from './Preview/ButtonPanel';
 import { images, deleteImage as del } from '../main';
 const config = new ElectronConfig();
 
@@ -75,9 +75,9 @@ function onFileChange(e) {
 export default {
   name: 'preview',
   components: {
-    ImageList,
+    ButtonPanel,
     HelpText,
-    Upload
+    ImageList
   },
   data: () => ({
     url: '',

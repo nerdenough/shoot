@@ -33,9 +33,9 @@ export default {
 
   input {
     width: 100%;
-    height: 30px;
-    background: lighten($secondary, 10%);
-    color: lighten($tertiary, 10%);
+    height: 40px;
+    background: $tertiary;
+    color: white;
     font-size: 16px;
     font-weight: $bold;
     outline: none;
@@ -45,10 +45,11 @@ export default {
     margin-bottom: $spacing-medium;
 
     &:hover {
-      color: lighten($tertiary, 20%);
+      color: darken(white, 20%);
     }
 
     &:focus {
+      background: $highlight-dark;
       color: white;
     }
   }

@@ -1,7 +1,8 @@
 <template>
   <div class="settings">
     <div class="settings-forms">
-      <settings-toggle v-bind:toggle="this.toggleAws" v-bind:visible="this.aws" :title="'AWS Config'"></settings-toggle>
+      <settings-toggle v-bind:toggle="this.toggleGeneral" v-bind:visible="this.general" :title="'General'"></settings-toggle>
+      <settings-toggle v-bind:toggle="this.toggleAws" v-bind:visible="this.aws" :title="'Amazon S3'"></settings-toggle>
       <aws-settings v-if="this.aws"></aws-settings>
     </div>
     <by-line></by-line>
@@ -14,6 +15,10 @@ import SettingsToggle from './Settings/SettingsToggle';
 import AwsSettings from './Settings/AwsSettings';
 import ButtonDone from './Settings/ButtonDone';
 import ByLine from './Settings/ByLine';
+
+function toggleGeneral() {
+  this.general = !this.general;
+}
 
 function toggleAws() {
   this.aws = !this.aws;
@@ -28,9 +33,11 @@ export default {
     ByLine
   },
   data: () => ({
-    aws: true
+    general: true,
+    aws: false
   }),
   methods: {
+    toggleGeneral,
     toggleAws
   },
   props: {
@@ -54,7 +61,12 @@ export default {
 
   .settings-forms {
     padding: $spacing-medium;
+    overflow-y: scroll;
     flex-grow: 1;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 }
 </style>

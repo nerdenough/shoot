@@ -37,6 +37,7 @@ export default {
   background: $highlight;
   display: flex;
   flex-direction: row;
+  min-height: 30px;
   height: 30px;
   -webkit-app-region: drag;
 

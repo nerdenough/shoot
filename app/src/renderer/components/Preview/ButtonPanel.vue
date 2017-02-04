@@ -32,6 +32,7 @@ export default {
 .button-panel {
   display: flex;
   flex-direction: row;
+  min-height: 60px;
   height: 60px;
   background: $secondary;
   text-align: center;

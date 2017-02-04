@@ -54,17 +54,8 @@ export default {
 
 $image-preview: 100px;
 
-.top {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: $spacing-medium;
+.image-item {
   background: $secondary;
-
-  .uploading {
-    color: $material-pink-primary;
-    padding: 0 $spacing-medium;
-    font-size: 24px;
-    line-height: $image-preview;
-  }
+  margin-bottom: $spacing-medium;
 }
 </style>

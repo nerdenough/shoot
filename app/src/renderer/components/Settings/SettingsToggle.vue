@@ -1,8 +1,8 @@
 <template>
-  <div @click="this.toggle" class="settings-toggle">
-    <h3>Settings</h3>
-    <i v-if="this.visible" class="fa fa-chevron-up chevron"></i>
-    <i v-if="!this.visible" class="fa fa-chevron-down chevron"></i>
+  <div @click="toggle" class="settings-toggle">
+    <h3>{{ title }}</h3>
+    <i v-if="visible" class="fa fa-chevron-up chevron"></i>
+    <i v-if="!visible" class="fa fa-chevron-down chevron"></i>
   </div>
 </template>
 
@@ -17,6 +17,10 @@ export default {
     visible: {
       type: Boolean,
       required: true
+    },
+    title: {
+      type: String,
+      required: true
     }
   }
 };
@@ -30,8 +34,8 @@ $height: 30px;
   display: flex;
   width: 100%;
   height: $height;
-  background: $material-grey-primary;
-  color: $material-grey-secondary;
+  background: $secondary;
+  color: lighten($tertiary, 20%);
   padding: 0 $spacing-medium;
   cursor: pointer;
 

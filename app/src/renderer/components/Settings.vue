@@ -1,7 +1,7 @@
 <template>
   <div class="settings">
-    <settings-toggle v-bind:toggle="this.toggle" v-bind:visible="this.visible"></settings-toggle>
-    <aws-settings v-if="this.visible"></aws-settings>
+    <settings-toggle v-bind:toggle="this.toggleAws" v-bind:visible="this.aws" :title="'AWS'"></settings-toggle>
+    <aws-settings v-if="this.aws"></aws-settings>
   </div>
 </template>
 
@@ -9,8 +9,8 @@
 import SettingsToggle from './Settings/SettingsToggle';
 import AwsSettings from './Settings/AwsSettings';
 
-function toggle() {
-  this.visible = !this.visible;
+function toggleAws() {
+  this.aws = !this.aws;
 }
 
 export default {
@@ -20,10 +20,10 @@ export default {
     AwsSettings
   },
   data: () => ({
-    visible: false
+    aws: false
   }),
   methods: {
-    toggle
+    toggleAws
   }
 };
 </script>

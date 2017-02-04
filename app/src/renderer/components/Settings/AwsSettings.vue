@@ -1,6 +1,5 @@
 <template>
   <div class="settings aws">
-    <h3>AWS Config</h3>
     <text-field label="URL" @change="onUrlChange" v-model="this.url"></text-field>
     <text-field label="S3 Bucket Name" @change="onBucketChange" v-model="this.bucket"></text-field>
     <text-field label="Access Key Id" @change="onAccessKeyIdChange" v-model="this.accessKeyId"></text-field>
@@ -52,12 +51,6 @@ export default {
 @import '../../../variables.scss';
 
 .settings {
-  padding: $spacing-medium;
-
-  h3 {
-    font-size: 12px;
-    font-weight: $regular;
-    margin: 0;
-  }
+  padding: 0 $spacing-medium;
 }
 </style>

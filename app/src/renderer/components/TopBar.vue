@@ -1,0 +1,67 @@
+<template>
+  <div class="top-bar">
+    <h1 class="app-title">Shoot</h1>
+    <button class="close">
+      <i class="fa fa-close"></i>
+    </button>
+  </div>
+</template>
+
+<script>
+import SettingsToggle from './Settings/SettingsToggle';
+import AwsSettings from './Settings/AwsSettings';
+
+function toggle() {
+  this.visible = !this.visible;
+}
+
+export default {
+  name: 'top-bar',
+  components: {
+    SettingsToggle,
+    AwsSettings
+  },
+  data: () => ({
+    visible: false
+  }),
+  methods: {
+    toggle
+  }
+};
+</script>
+
+<style lang="scss" scoped>
+@import '../../variables.scss';
+
+.top-bar {
+  background: $material-pink-primary;
+  display: flex;
+  flex-direction: row;
+  height: 30px;
+  -webkit-app-region: drag;
+
+  .app-title {
+    color: white;
+    flex-grow: 1;
+    font-size: 15px;
+    font-weight: $bold;
+    margin: 0;
+    line-height: 30px;
+    padding-left: $spacing-medium;
+  }
+
+  .close {
+    width: 30px;
+    background: transparent;
+    color: white;
+    outline: none;
+    cursor: pointer;
+    border: none;
+    -webkit-app-region: no-drag;
+
+    &:hover {
+      color: $material-pink-secondary;
+    }
+  }
+}
+</style>

@@ -1,5 +1,6 @@
 <template>
   <div class="app" @keyup.ctrl="this.pasteImage">
+    <top-bar></top-bar>
     <preview></preview>
     <settings></settings>
   </div>
@@ -8,11 +9,13 @@
 <script>
 import Preview from './components/Preview';
 import Settings from './components/Settings';
+import TopBar from './components/TopBar';
 
 export default {
   components: {
     Preview,
-    Settings
+    Settings,
+    TopBar
   }
 };
 </script>

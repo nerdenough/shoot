@@ -38,6 +38,7 @@ export default {
   flex-grow: 1;
   overflow-y: scroll;
   border-bottom: 0;
+  padding: $spacing-medium;
 }
 
 ::-webkit-scrollbar {

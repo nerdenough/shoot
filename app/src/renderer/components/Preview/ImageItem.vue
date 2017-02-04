@@ -1,14 +1,7 @@
 <template>
-    <div class="image-item">
-      <div class="preview">
-        <img class="image" :src="image.source">
-      </div>
-      <div class="grow">
-        <input type="text" class="url" v-if="image.url" :value="image.url" disabled>
-        <button class="copy" v-if="image.url" @click="copy">
-          <i class="fa fa-clipboard"></i>
-        </button>
-      </div>
+  <div class="image-item">
+    <div class="top">
+      <image-preview :source="image.source"></image-preview>
       <div v-if="uploading" class="uploading">
         <i class="fa fa-refresh fa-spin"></i>
       </div>
@@ -16,11 +9,20 @@
         <i class="fa fa-close"></i>
       </button>
     </div>
+    <div class="bottom">
+      <div class="grow">
+        <input type="text" class="url" v-if="image.url" :value="image.url" disabled>
+        <button class="copy" v-if="image.url" @click="copy">
+          <i class="fa fa-clipboard"></i>
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import clipboard from 'clipboard-js';
+import ImagePreview from './ImagePreview';
 
 function onClick() {
   this.deleteImage(this.index);
@@ -32,6 +34,9 @@ function copy() {
 
 export default {
   name: 'image-item',
+  components: {
+    ImagePreview
+  },
   methods: {
     onClick,
     copy
@@ -60,42 +65,26 @@ export default {
 <style lang="scss" scoped>
 @import '../../../variables.scss';
 
-.image-item {
+$image-preview: 100px;
+
+.top {
   display: flex;
   flex-direction: row;
-  padding: $spacing-medium;
-  border-bottom: 1px solid #efefef;
-
-  .preview {
-    position: relative;
-    min-width: 50px;
-    height: 50px;
-    text-align: center;
-
-    .image {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      max-width: 100%;
-      max-height: 100%;
-      transform: translate(-50%, -50%);
-    }
-  }
+  margin-bottom: $spacing-medium;
+  background: $secondary;
 
   .grow {
     display: flex;
     flex-direction: row;
     flex-grow: 1;
     position: relative;
-    padding: $spacing-medium 0;
-    margin-left: $spacing-medium;
 
     .url {
       flex-grow: 1;
       height: 100%;
-      color: $material-grey-secondary;
-      background: darken(white, 5%);
-      border: 1px solid darken(white, 10%);
+      color: $tertiary;
+      background: $secondary;
+      border: none;
       padding: 0 $spacing-small;
       font-size: 14px;
     }
@@ -118,12 +107,13 @@ export default {
     color: $material-pink-primary;
     padding: 0 $spacing-medium;
     font-size: 24px;
-    line-height: 50px;
+    line-height: $image-preview;
   }
 
   .delete {
-    background: transparent;
-    color: $material-grey-secondary;
+    width: 40px;
+    background: $highlight;
+    color: white;
     cursor: pointer;
     outline: none;
     padding: 0 $spacing-medium;
@@ -131,7 +121,7 @@ export default {
     font-size: 16px;
 
     &:hover {
-      color: $material-pink-primary;
+      background: $highlight-dark;
     }
   }
 }

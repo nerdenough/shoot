@@ -9,6 +9,7 @@ $primary: #101010;
 $secondary: #202020;
 $tertiary: #404040;
 $highlight: #e02f5a;
+$highlight-dark: darken($highlight, 10%);
 
 // Spacing
 $spacing-small: 5px;

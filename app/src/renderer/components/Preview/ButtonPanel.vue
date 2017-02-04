@@ -61,7 +61,7 @@ export default {
     background: $highlight;
 
     &:hover {
-      background: darken($highlight, 10%);
+      background: $highlight-dark;
     }
   }
 

@@ -4,6 +4,7 @@
       <settings-toggle v-bind:toggle="this.toggleAws" v-bind:visible="this.aws" :title="'AWS Config'"></settings-toggle>
       <aws-settings v-if="this.aws"></aws-settings>
     </div>
+    <by-line></by-line>
     <button-done :toggleSettings="toggleSettings"></button-done>
   </div>
 </template>
@@ -12,6 +13,7 @@
 import SettingsToggle from './Settings/SettingsToggle';
 import AwsSettings from './Settings/AwsSettings';
 import ButtonDone from './Settings/ButtonDone';
+import ByLine from './Settings/ByLine';
 
 function toggleAws() {
   this.aws = !this.aws;
@@ -22,7 +24,8 @@ export default {
   components: {
     SettingsToggle,
     AwsSettings,
-    ButtonDone
+    ButtonDone,
+    ByLine
   },
   data: () => ({
     aws: true

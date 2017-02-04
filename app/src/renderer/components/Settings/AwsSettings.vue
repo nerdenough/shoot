@@ -51,6 +51,7 @@ export default {
 @import '../../../variables.scss';
 
 .settings {
+  background: $secondary;
   padding: 0 $spacing-medium;
 }
 </style>

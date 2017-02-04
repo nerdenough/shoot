@@ -27,21 +27,22 @@ export default {
   label {
     display: block;
     color: lighten($tertiary, 4%);
-    font-size: 14px;
-    margin-top: $spacing-medium;
-    margin-bottom: $spacing-small;
+    font-size: 16px;
+    font-weight: $bold;
   }
 
   input {
     width: 100%;
     height: 30px;
-    background: $secondary;
+    background: lighten($secondary, 10%);
     color: lighten($tertiary, 10%);
     font-size: 16px;
     font-weight: $bold;
     outline: none;
     padding: 0 $spacing-small;
     border: 1px none;
+    margin-top: $spacing-small;
+    margin-bottom: $spacing-medium;
 
     &:hover {
       color: lighten($tertiary, 20%);

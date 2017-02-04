@@ -1,6 +1,6 @@
 <template>
   <div class="settings">
-    <settings-toggle v-bind:toggle="this.toggleAws" v-bind:visible="this.aws" :title="'AWS'"></settings-toggle>
+    <settings-toggle v-bind:toggle="this.toggleAws" v-bind:visible="this.aws" :title="'AWS Config'"></settings-toggle>
     <aws-settings v-if="this.aws"></aws-settings>
   </div>
 </template>
@@ -20,7 +20,7 @@ export default {
     AwsSettings
   },
   data: () => ({
-    aws: false
+    aws: true
   }),
   methods: {
     toggleAws
@@ -35,5 +35,6 @@ export default {
   background: $primary;
   flex-grow: 1;
   color: white;
+  padding: $spacing-medium;
 }
 </style>

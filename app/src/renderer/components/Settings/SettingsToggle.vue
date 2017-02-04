@@ -28,28 +28,32 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../../variables.scss';
-$height: 30px;
+$height: 40px;
 
 .settings-toggle {
   display: flex;
   width: 100%;
   height: $height;
   background: $secondary;
-  color: lighten($tertiary, 20%);
-  padding: 0 $spacing-medium;
+  color: lighten($tertiary, 50%);
   cursor: pointer;
 
   h3 {
     flex-grow: 1;
-    font-size: $settings-header;
+    font-size: 16px;
     font-weight: $bold;
     line-height: $height;
+    padding-left: $spacing-medium;
     margin: 0;
   }
 
   .chevron {
+    background: $highlight;
+    color: white;
+    width: $height;
     font-size: $settings-icon;
     line-height: $height;
+    text-align: center;
   }
 }
 </style>

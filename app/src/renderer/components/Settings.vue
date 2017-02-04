@@ -1,7 +1,7 @@
 <template>
   <div class="settings">
     <div class="settings-forms">
-      <settings-toggle v-bind:toggle="this.toggleGeneral" v-bind:visible="this.general" :title="'General'"></settings-toggle>
+      <!-- <settings-toggle v-bind:toggle="this.toggleGeneral" v-bind:visible="this.general" :title="'General'"></settings-toggle> -->
       <settings-toggle v-bind:toggle="this.toggleAws" v-bind:visible="this.aws" :title="'Amazon S3'"></settings-toggle>
       <aws-settings v-if="this.aws"></aws-settings>
     </div>

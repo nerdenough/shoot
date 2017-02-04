@@ -1,10 +1,8 @@
 <template>
   <div class="image-item">
+    <spinner v-if="uploading"></spinner>
     <image-title :deleteItem="deleteItem"></image-title>
     <image-preview :source="image.source"></image-preview>
-    <div v-if="uploading" class="uploading">
-      <i class="fa fa-refresh fa-spin"></i>
-    </div>
     <image-url v-if="image.url" :url="image.url"></image-url>
   </div>
 </template>
@@ -13,6 +11,7 @@
 import ImagePreview from './ImagePreview';
 import ImageTitle from './ImageTitle';
 import ImageUrl from './ImageUrl';
+import Spinner from './Spinner';
 
 function deleteItem() {
   this.deleteImage(this.index);
@@ -23,7 +22,8 @@ export default {
   components: {
     ImagePreview,
     ImageTitle,
-    ImageUrl
+    ImageUrl,
+    Spinner
   },
   methods: {
     deleteItem
@@ -55,6 +55,7 @@ export default {
 $image-preview: 100px;
 
 .image-item {
+  position: relative;
   background: $secondary;
   margin-bottom: $spacing-medium;
 }

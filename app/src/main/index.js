@@ -64,6 +64,7 @@ function createWindow () {
    * Initial window options
    */
   mainWindow = new BrowserWindow({
+    icon: `${__dirname}/../../icons/icon.png`,
     width: 400,
     height: 600,
     frame: false,

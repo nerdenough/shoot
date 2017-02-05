@@ -47,6 +47,7 @@ export default {
     border: none;
     padding: 0 $spacing-medium;
     font-size: 14px;
+    font-weight: $bold;
   }
 
   .copy {

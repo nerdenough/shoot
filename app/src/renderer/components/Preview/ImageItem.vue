@@ -4,6 +4,7 @@
     <image-title :deleteItem="deleteItem" :image="image"></image-title>
     <image-preview :source="image.source"></image-preview>
     <image-url v-if="image.url" :url="image.url"></image-url>
+    <upload-error v-if="image.error && !image.url" :message="image.error"></upload-error>
   </div>
 </template>
 
@@ -11,6 +12,7 @@
 import ImagePreview from './ImagePreview';
 import ImageTitle from './ImageTitle';
 import ImageUrl from './ImageUrl';
+import UploadError from './UploadError';
 import Spinner from './Spinner';
 
 function deleteItem() {
@@ -23,6 +25,7 @@ export default {
     ImagePreview,
     ImageTitle,
     ImageUrl,
+    UploadError,
     Spinner
   },
   methods: {

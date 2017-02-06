@@ -20,11 +20,11 @@ function onPaste(e) {
     if (type.match('Files')) {
       const blob = e.clipboardData.items[i].getAsFile();
       const url = window.URL;
+      const ext = blob.type.split('/')[1];
       images.push({
         blob,
         source: url.createObjectURL(blob),
-        title: shortid.generate(),
-        ext: blob.type.split('/')[1],
+        title: `${shortid.generate()}.${ext}`,
         uploading: false
       });
     }

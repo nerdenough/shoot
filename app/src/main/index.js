@@ -18,12 +18,12 @@ server.use(cors());
 server.post('/upload', (req, res) => {
   if (!req.body.buffer || !req.body.type) {
     res.status(500);
-    return res.send('No image supplied');
+    return res.send('Error: No image supplied');
   }
 
   if (!req.body.key) {
     res.status(500);
-    return res.send('No key specified');
+    return res.send('Error: No filename specified');
   }
 
   AWS.config.update({
@@ -34,9 +34,10 @@ server.post('/upload', (req, res) => {
   });
 
   const s3 = new AWS.S3();
+  const key = req.body.key;
   const params = {
     Bucket: config.get('aws.bucket'),
-    Key: req.body.key,
+    Key: key,
     Body: Buffer.from(req.body.buffer),
     ContentType: req.body.type
   };
@@ -46,7 +47,7 @@ server.post('/upload', (req, res) => {
     .promise()
     .then((data) => {
       return res.json({
-        url: `${config.get('aws.url')}/${req.body.key}`
+        url: `${config.get('aws.url')}/${key}`
       });
     }, (err) => {
       console.log(err);

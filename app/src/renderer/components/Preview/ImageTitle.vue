@@ -1,7 +1,7 @@
 <template>
   <div class="image-title">
     <div class="title">
-      <input type="text" class="input title-input" v-model="image.title">
+      <input type="text" class="input title-input" v-model="image.title" placeholder="Enter a filename">
     </div>
     <button @click="deleteItem" class="button delete">
       <i class="fa fa-close"></i>
@@ -43,11 +43,16 @@ export default {
       width: 100%;
       font-weight: $bold;
       background: $secondary;
-      color: $tertiary;
+      color: lighten($tertiary, 10%);
       border: none;
       font-size: 16px;
       outline: none;
       padding: 0 $spacing-medium;
+
+      &::-webkit-input-placeholder {
+        color: $tertiary;
+        font-style: italic;
+      }
 
       &:hover {
         color: lighten($tertiary, 20%);

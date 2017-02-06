@@ -1,7 +1,7 @@
 <template>
   <div class="image-item">
     <spinner v-if="uploading"></spinner>
-    <image-title :deleteItem="deleteItem"></image-title>
+    <image-title :deleteItem="deleteItem" :image="image"></image-title>
     <image-preview :source="image.source"></image-preview>
     <image-url v-if="image.url" :url="image.url"></image-url>
   </div>

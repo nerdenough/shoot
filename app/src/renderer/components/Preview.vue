@@ -24,8 +24,8 @@ function fileUploadSuccess(res, image) {
   image.uploading = false;
 }
 
-function fileUploadError(err) {
-  console.log(err);
+function fileUploadError(err, image) {
+  image.uploading = false;
 }
 
 function upload() {
@@ -44,9 +44,12 @@ function upload() {
         this.$http
           .post('http://localhost:3000/upload', {
             buffer,
-            type: image.blob.type
+            type: image.blob.type,
+            key: `${image.title}.${image.ext}`
           })
-          .then((res) => fileUploadSuccess(res, image), fileUploadError);
+          .then((res) => fileUploadSuccess(res, image),
+            (err) => fileUploadError(err, image))
+          .catch(err => console.log(err));
       });
     }
   });

@@ -1,6 +1,8 @@
 <template>
   <div class="image-title">
-    <div class="title">some-file.png</div>
+    <div class="title">
+      <input type="text" class="input title-input" v-model="image.title">
+    </div>
     <button @click="deleteItem" class="button delete">
       <i class="fa fa-close"></i>
     </button>
@@ -13,6 +15,10 @@ export default {
   props: {
     deleteItem: {
       type: Function,
+      required: true
+    },
+    image: {
+      type: Object,
       required: true
     }
   }
@@ -29,11 +35,28 @@ export default {
   height: 40px;
 
   .title {
-    color: white;
     font-weight: $bold;
     line-height: 40px;
     flex-grow: 1;
-    padding-left: $spacing-medium;
+
+    .title-input {
+      width: 100%;
+      font-weight: $bold;
+      background: $secondary;
+      color: $tertiary;
+      border: none;
+      font-size: 16px;
+      outline: none;
+      padding: 0 $spacing-medium;
+
+      &:hover {
+        color: lighten($tertiary, 20%);
+      }
+
+      &:focus {
+        color: lighten($tertiary, 50%);
+      }
+    }
   }
 
   .delete {

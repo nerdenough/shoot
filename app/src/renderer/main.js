@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Electron from 'vue-electron';
 import VueResource from 'vue-resource';
+import shortid from 'shortid';
 
 Vue.use(Electron);
 Vue.use(VueResource);
@@ -19,10 +20,11 @@ function onPaste(e) {
     if (type.match('Files')) {
       const blob = e.clipboardData.items[i].getAsFile();
       const url = window.URL;
-      const source = url.createObjectURL(blob);
       images.push({
         blob,
-        source,
+        source: url.createObjectURL(blob),
+        title: shortid.generate(),
+        ext: blob.type.split('/')[1],
         uploading: false
       });
     }

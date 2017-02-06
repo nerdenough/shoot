@@ -3,7 +3,6 @@ import path from 'path';
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import shortid from 'shortid';
 import AWS from 'aws-sdk';
 import ElectronConfig from 'electron-config';
 
@@ -18,11 +17,14 @@ server.use(cors());
 
 server.post('/upload', (req, res) => {
   if (!req.body.buffer || !req.body.type) {
-    return res.sendStatus(500);
+    res.status(500);
+    return res.send('No image supplied');
   }
 
-  const ext = req.body.type.split('/')[1];
-  const key = `${shortid.generate()}.${ext}`;
+  if (!req.body.key) {
+    res.status(500);
+    return res.send('No key specified');
+  }
 
   AWS.config.update({
     credentials: {
@@ -34,7 +36,7 @@ server.post('/upload', (req, res) => {
   const s3 = new AWS.S3();
   const params = {
     Bucket: config.get('aws.bucket'),
-    Key: key,
+    Key: req.body.key,
     Body: Buffer.from(req.body.buffer),
     ContentType: req.body.type
   };
@@ -44,7 +46,7 @@ server.post('/upload', (req, res) => {
     .promise()
     .then((data) => {
       return res.json({
-        url: `${config.get('aws.url')}/${key}`
+        url: `${config.get('aws.url')}/${req.body.key}`
       });
     }, (err) => {
       console.log(err);

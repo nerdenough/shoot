@@ -30,7 +30,7 @@ module.exports = {
     'object-curly-spacing': [2, 'always'],
     'quotes': [2, 'single', 'avoid-escape'],
     'semi': [2, 'always'],
-    'keyword-spacing': [2, {'before': true, 'after': true}],
+    'keyword-spacing': [2, { 'before': true, 'after': true }],
     'space-unary-ops': 2,
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0

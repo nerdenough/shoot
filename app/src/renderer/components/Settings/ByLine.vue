@@ -1,6 +1,6 @@
 <template>
   <div class="by-line">
-    Made with <i class="fa fa-heart heart"></i> by <span @click="link" class="link">Brendan Goodenough</a>
+    Made with <i class="fa fa-heart heart"></i> by <span @click="link" class="link">Brendan Goodenough</span>
   </div>
 </template>
 
